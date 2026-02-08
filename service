@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DoriumLand City Services Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .district-card:hover .district-circle {
+            box-shadow: 0 0 20px rgba(19, 236, 19, 0.4);
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen">
+<div class="relative flex flex-col min-h-screen">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 border-b border-primary/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-12 py-3">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 group cursor-pointer">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined text-2xl font-bold">domain</span>
+</div>
+<h1 class="text-xl font-extrabold tracking-tight dark:text-white">DoriumLand</h1>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-semibold text-primary" href="#">Dashboard</a>
+<a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors" href="#">Districts</a>
+<a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors" href="#">Governance</a>
+</nav>
+</div>
+<div class="flex items-center gap-4 flex-1 justify-end">
+<div class="hidden sm:flex max-w-xs w-full relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-slate-100 dark:bg-white/5 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary" placeholder="Search services..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-primary/10 rounded-lg transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full border-2 border-background-dark"></span>
+</button>
+<div class="h-10 px-4 flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-lg">
+<span class="material-symbols-outlined text-primary text-xl">account_balance_wallet</span>
+<span class="text-sm font-bold text-primary">4,250 GLD</span>
+</div>
+<div class="size-10 rounded-full border-2 border-primary/30 p-0.5 overflow-hidden">
+<img class="w-full h-full object-cover rounded-full" data-alt="User profile avatar illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqO9UCVYN1k315XXaY1Ct-lkGo44vYG3XMUK4hZ5qw0dPeaFtNFXfTtK47KfwfHmjYr02VdCro8Qstv1PpSGOxDa4pXvMKRTbCSx8m7ZbRTI4jZbB2qx66PuobZDyj4WfC8ndMKWwFkpt7IYfvoDX405A9tPryYCREP0cRjUqMpn-W99R10Z3jqCOGjwqbzkZb4CJE-mYh3BDz5YEZ72IgWX228DoXiIjc0yRKrx4iIvdETBMbi5k7GrkGxEzKLSc65mWGn4D2LB6m"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-[1200px] mx-auto w-full px-6 py-10">
+<!-- Breadcrumbs & Welcome -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-bold tracking-tight mb-2">Welcome back, Citizen</h2>
+<p class="text-slate-500 dark:text-slate-400 font-medium">System status: <span class="text-primary">Fully Operational</span> • Last sync: 2 mins ago</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-primary text-background-dark px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                        Quick Action
+                    </button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Communicate in Discourse -->
+<div class="district-card group cursor-pointer">
+<div class="bg-white/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-8 flex flex-col items-center text-center transition-all hover:border-primary/50">
+<div class="district-circle size-32 rounded-full overflow-hidden mb-6 border-4 border-slate-100 dark:border-white/5 transition-all duration-300 relative shadow-xl">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Abstract community connection pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPCQnjj7mRo0lPFH9_bxWRo3R5KguK_N2mUsTBEEhsycUyxCcUuxDDAntxbDBTMXPrhHqe18f7STiE0w4yx8E4l6uaklp_wUhAeeYeTmFrz8QWX-Fg1EaUg18nOD7_h6_6uoc4g1pkvMJfxH-4t76_Oi5UirRvroCBXCrtO70REzOqgTf7TH_OfudgvmqfoILhe8fRmZLM_ZbWbU9uPzsKgqYhpsHXanDT-mtZZV4GIl2cwMzICSusnbOq2tGKtV5hPytqQ02W7mT1"/>
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary font-light">forum</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-2">Discourse District</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Engage in community forums, vote on proposals, and shape governance.</p>
+<div class="mt-4 flex gap-2">
+<span class="text-[10px] uppercase tracking-widest font-bold px-2 py-1 bg-primary/10 text-primary rounded">3 New Posts</span>
+</div>
+</div>
+</div>
+<!-- Collaborating in Gold NFT -->
+<div class="district-card group cursor-pointer">
+<div class="bg-white/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-8 flex flex-col items-center text-center transition-all hover:border-primary/50">
+<div class="district-circle size-32 rounded-full overflow-hidden mb-6 border-4 border-slate-100 dark:border-white/5 transition-all duration-300 relative shadow-xl">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Golden geometric nft token representation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIabhPGq6O0zwRTIK4ypAijpjJ21flJS1braK_2Gj1Q0iw1sgThLRgEKFqTo44_4mAPZES0S7HRw2rP9EOKMQ2QvHhaJ5fmL-dpO7pIHqryMfU36m_GMHI5bK9YUX6SPyoVS8bZya1UAQWBH-C7ST9NOXnUJrC-OMXKx_Oc01G9CRtbJeGApK3Bcj_e_G_REJrfDXVuqF_nEi7Fw3FoUMxiMzq_HLVlOpDJcmTitZgohIUCETutErZzKUumge8g2kqx_o_E3Z2scQo"/>
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary font-light">token</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-2">Gold NFT Hub</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Collaborative minting and vault management for digital assets.</p>
+<div class="mt-4 flex gap-2">
+<span class="text-[10px] uppercase tracking-widest font-bold px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-500 rounded">12 Assets</span>
+</div>
+</div>
+</div>
+<!-- Maritime Service -->
+<div class="district-card group cursor-pointer">
+<div class="bg-white/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-8 flex flex-col items-center text-center transition-all hover:border-primary/50">
+<div class="district-circle size-32 rounded-full overflow-hidden mb-6 border-4 border-slate-100 dark:border-white/5 transition-all duration-300 relative shadow-xl">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Aerial view of digital blue ocean waves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGbGALUikq6-_n7dVxbVOI4e6IMRI845aUPcJA23ZyXhDKR766tRQvLb-e5XgDqjpg11_32fw7nDkqnaM7b-BYn6r7yxnl8btRjViPA1r9sM9VO3HTTMkzQ2YX5w_xRo-1qm0l-xQK8Q-Gbc-0ASGUygnIjyTVSTkVPjD62ndso9BUIp8lNdfwQLSsJ60jPWmgiivQMhyypy4yDy9cPCyJgVoX0AuurHoZlW0CcsCdKhnWYlpKLZpBeIGEibjpl6RZlxKnacm_xVde"/>
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary font-light">sailing</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-2">Maritime Service</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Manage logistics, water-based infrastructure, and coastal trade routes.</p>
+<div class="mt-4 flex gap-2">
+<span class="text-[10px] uppercase tracking-widest font-bold px-2 py-1 bg-primary/10 text-primary rounded">In Transit</span>
+</div>
+</div>
+</div>
+<!-- Creating Campaign -->
+<div class="district-card group cursor-pointer">
+<div class="bg-white/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-8 flex flex-col items-center text-center transition-all hover:border-primary/50">
+<div class="district-circle size-32 rounded-full overflow-hidden mb-6 border-4 border-slate-100 dark:border-white/5 transition-all duration-300 relative shadow-xl">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Bright energy burst representing innovation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF1qOnl3UrRRP-hVrKF-02Ots10LPVUOAS7CVpbzJfk9Ld1rwSg1d7RK6ugs06aNiPy6B8hhC9HrVGxo89kujO3dVIeG6gfS4g86HUFk842ELYVzBFI_FycrTXRDg2aidiE8f7tOfWffydVtVXZZSRm5QQwni_x9KZ_RGufnUhSXy8SOtbFFh6G2rOFMRwAeOYkoq9nbbNMCJ5SaJxKWyGjEP6qJhbNNfkQIaaE_WIYS4Kem7wZVnA6myjtgzWpxFA7QvmlokfWcmg"/>
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary font-light">campaign</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-2">Campaign Portal</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Launch new social initiatives or city development proposals.</p>
+<div class="mt-4 flex gap-2">
+<span class="text-[10px] uppercase tracking-widest font-bold px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-500 rounded">2 Active</span>
+</div>
+</div>
+</div>
+<!-- Investing in RWA -->
+<div class="district-card group cursor-pointer">
+<div class="bg-white/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-8 flex flex-col items-center text-center transition-all hover:border-primary/50">
+<div class="district-circle size-32 rounded-full overflow-hidden mb-6 border-4 border-slate-100 dark:border-white/5 transition-all duration-300 relative shadow-xl">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Microchip circuit board pattern green" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnSfqUXgl6L6OSPrUYUq0VCvSTOOR6az-eF57erZSevKJb_P1pi-dsi9Xc8bJ0w_6z13uT1enPdlPiZY7aVQwNfU7VzEP9r1xtQWn46N83lu1G9ewchhLDQqbO9XUrFQC0fKiosUdIbEMDXIHEsHnQ8cbEriP4oodVC1eLyfx92qV2j2sTE3ag6Wyp34RgLTuKW4n9hTnjV7TkUkqhjBbgz9J8Qc1Y33bORE5TsHsPXbMWExzp4F7Hmjdy7cUGb0l5P_LJzkDi1sCD"/>
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary font-light">real_estate_agent</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-2">RWA Investment</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Real World Asset tokenization and portfolio performance tracking.</p>
+<div class="mt-4 flex gap-2">
+<span class="text-[10px] uppercase tracking-widest font-bold px-2 py-1 bg-primary/10 text-primary rounded">+5.4% ROI</span>
+</div>
+</div>
+</div>
+<!-- Marketplace -->
+<div class="district-card group cursor-pointer">
+<div class="bg-white/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-8 flex flex-col items-center text-center transition-all hover:border-primary/50">
+<div class="district-circle size-32 rounded-full overflow-hidden mb-6 border-4 border-slate-100 dark:border-white/5 transition-all duration-300 relative shadow-xl">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Dense grid of vibrant city stalls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIzbVcsk_0CU-7r627FmaHdXVVUFnsep4TNB0W3XdQ48sprBhu37FG60RipIXcRb-wW-zMIqimos1Fp7YWQsgCM0h-gj6NiEXWgQtlg17K15jWmN8mOFBah3Y46sVIYQGmJxNSd86k3DypfvzH0L4MISJWbIEBTkoUuDker6PqViUyKxnfH3E7TT9PDIthFNlvWGKW3A8cyyM56uQ5wr5f3fdvutWO3IBqp4oYyxyiaaoeiB0pamV_dBce76EG-fqgMLdN7iLMKZWo"/>
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary font-light">storefront</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-2">City Marketplace</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">Trade services, resources, and rare items with other citizens.</p>
+<div class="mt-4 flex gap-2">
+<span class="text-[10px] uppercase tracking-widest font-bold px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-500 rounded">84 Live Offers</span>
+</div>
+</div>
+</div>
+</div>
+<!-- District Performance Summary -->
+<div class="mt-16 bg-white/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+<div>
+<h3 class="text-xl font-bold mb-1">Performance Overview</h3>
+<p class="text-sm text-slate-500">Live statistics across your active districts</p>
+</div>
+<button class="text-sm font-bold text-primary flex items-center gap-1 hover:underline">
+                        View Detailed Reports
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-5 border border-slate-200 dark:border-white/5 rounded-xl bg-background-light dark:bg-background-dark/30">
+<div class="flex items-center gap-3 mb-3 text-slate-500">
+<span class="material-symbols-outlined text-sm">monitoring</span>
+<span class="text-xs font-bold uppercase tracking-wider">Campaign Velocity</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold">12</span>
+<span class="text-primary text-sm font-bold pb-1 flex items-center"><span class="material-symbols-outlined text-xs">trending_up</span> 20%</span>
+</div>
+</div>
+<div class="p-5 border border-slate-200 dark:border-white/5 rounded-xl bg-background-light dark:bg-background-dark/30">
+<div class="flex items-center gap-3 mb-3 text-slate-500">
+<span class="material-symbols-outlined text-sm">payments</span>
+<span class="text-xs font-bold uppercase tracking-wider">Total RWA Value</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold">4.2M</span>
+<span class="text-primary text-sm font-bold pb-1 flex items-center"><span class="material-symbols-outlined text-xs">trending_up</span> 5.4%</span>
+</div>
+</div>
+<div class="p-5 border border-slate-200 dark:border-white/5 rounded-xl bg-background-light dark:bg-background-dark/30">
+<div class="flex items-center gap-3 mb-3 text-slate-500">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+<span class="text-xs font-bold uppercase tracking-wider">Marketplace Sales</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold">84</span>
+<span class="text-primary text-sm font-bold pb-1 flex items-center"><span class="material-symbols-outlined text-xs">trending_up</span> 12%</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto border-t border-slate-200 dark:border-white/5 py-8 px-6 text-center">
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                © 2024 DoriumLand Districts • Decentralized City Management System v2.0.4
+            </p>
+</footer>
+</div>
+</body></html>
